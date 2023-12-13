@@ -1,11 +1,13 @@
-import React from "react";
+import React, { useContext } from "react";
 import NavBar from "../components/NavBar";
 import Banner from "../components/Banner";
 import Footer from "../components/Footer";
 import Card from "../components/Card";
-import data from "../data";
+import { StoreContext } from "../Context/StoreContext";
 
 function Basket() {
+  const { data, cartItems, removeFromCart, getTotalCartAmount } =
+    useContext(StoreContext);
   return (
     <section>
       <Banner />
@@ -13,123 +15,50 @@ function Basket() {
         <NavBar />
 
         {/*=============== section ================*/}
-        <div className="w-[928px] h-[860px] mt-[600px] ml-[600px] mb-[160px]  text-right pr-[20px] flex flex-col justify-between">
+        <div className="w-[928px] h-[860px] mt-[600px] ml-[600px] mb-[160px]  text-right pr-[20px] flex flex-col gap-10">
           <div>
             <p className="text-[40px] font-bold">سلة التسوق</p>
           </div>
-          <div className="text-[25px] font-semibold flex items-center justify-between border-b-[2px] pb-[20px] px-[20px]">
-            <div className="w-[57%] flex justify-between">
+          <div className="text-[25px] font-semibold flex items-center  border-b-[2px] pb-[20px] px-[20px] mr-[-100px]">
+            <div className="w-[57%] flex justify-end gap-[100px]">
               <p>المجموع</p>
               <p>الكمية</p>
               <p>السعر</p>
             </div>
-            <div className="w-[43%] ">المنتج</div>
+            <div className="w-[33%] ">المنتج</div>
           </div>
           <div>
-            <div className="flex items-center justify-between px-[20px] font-[600] border-b-[2px] pb-[20px] mt-[10px]">
-              <div>2500 EGP</div>
-              <div>
-                <div className="flex items-center justify-center gap-4 text-[20px] border-[1px] rounded-[20px]">
-                  <button className="w-[40px] h-[40px] text-[35px] border-[2px] rounded-bl-[20px] rounded-tl-[20px] flex items-center justify-center hover:bg-mainColor">
-                    -
-                  </button>
-                  <p>1</p>
-                  <button className="w-[40px] h-[40px] text-[35px] border-[2px] rounded-tr-[20px]  rounded-br-[20px] flex items-center justify-center hover:bg-mainColor">
-                    +
-                  </button>
-                </div>
-              </div>
-              <div>2500 EGP</div>
-              <div className="flex items-center gap-5">
-                <div>
-                  <p>فستان ابيض عصري</p>
-                  <p>اللون : ابيض</p>
-                  <p>الوزن : 2 كيلو</p>
-                </div>
-                <div>
-                  <img src="assets/cart-1.png" alt="" />
-                </div>
-              </div>
-            </div>
-
-            <div className="flex items-center justify-between px-[20px] font-[600] border-b-[2px] pb-[20px] mt-[10px]">
-              <div>2500 EGP</div>
-              <div>
-                <div className="flex items-center justify-center gap-4 text-[20px] border-[1px] rounded-[20px]">
-                  <button className="w-[40px] h-[40px] text-[35px] border-[2px] rounded-bl-[20px] rounded-tl-[20px] flex items-center justify-center hover:bg-mainColor">
-                    -
-                  </button>
-                  <p>1</p>
-                  <button className="w-[40px] h-[40px] text-[35px] border-[2px] rounded-tr-[20px]  rounded-br-[20px] flex items-center justify-center hover:bg-mainColor">
-                    +
-                  </button>
-                </div>
-              </div>
-              <div>2500 EGP</div>
-              <div className="flex items-center gap-5">
-                <div>
-                  <p>فستان ابيض عصري</p>
-                  <p>اللون : ابيض</p>
-                  <p>الوزن : 2 كيلو</p>
-                </div>
-                <div>
-                  <img src="assets/cart-1.png" alt="" />
-                </div>
-              </div>
-            </div>
-
-            <div className="flex items-center justify-between px-[20px] font-[600] border-b-[2px] pb-[20px] mt-[10px]">
-              <div>2500 EGP</div>
-              <div>
-                <div className="flex items-center justify-center gap-4 text-[20px] border-[1px] rounded-[20px]">
-                  <button className="w-[40px] h-[40px] text-[35px] border-[2px] rounded-bl-[20px] rounded-tl-[20px] flex items-center justify-center hover:bg-mainColor">
-                    -
-                  </button>
-                  <p>1</p>
-                  <button className="w-[40px] h-[40px] text-[35px] border-[2px] rounded-tr-[20px]  rounded-br-[20px] flex items-center justify-center hover:bg-mainColor">
-                    +
-                  </button>
-                </div>
-              </div>
-              <div>2500 EGP</div>
-              <div className="flex items-center gap-5">
-                <div>
-                  <p>فستان ابيض عصري</p>
-                  <p>اللون : ابيض</p>
-                  <p>الوزن : 2 كيلو</p>
-                </div>
-                <div>
-                  <img src="assets/cart-1.png" alt="" />
-                </div>
-              </div>
-            </div>
-
-            <div className="flex items-center justify-between px-[20px] font-[600] border-b-[2px] pb-[20px] mt-[10px]">
-              <div>2500 EGP</div>
-              <div>
-                <div className="flex items-center justify-center gap-4 text-[20px] border-[1px] rounded-[20px]">
-                  <button className="w-[40px] h-[40px] text-[35px] border-[2px] rounded-bl-[20px] rounded-tl-[20px] flex items-center justify-center hover:bg-mainColor">
-                    -
-                  </button>
-                  <p>1</p>
-                  <button className="w-[40px] h-[40px] text-[35px] border-[2px] rounded-tr-[20px]  rounded-br-[20px] flex items-center justify-center hover:bg-mainColor">
-                    +
-                  </button>
-                </div>
-              </div>
-              <div>2500 EGP</div>
-              <div className="flex items-center gap-5">
-                <div>
-                  <p>فستان ابيض عصري</p>
-                  <p>اللون : ابيض</p>
-                  <p>الوزن : 2 كيلو</p>
-                </div>
-                <div>
-                  <img src="assets/cart-1.png" alt="" />
-                </div>
-              </div>
-            </div>
+            {data.map((item) => {
+              if (cartItems[item.id] > 0) {
+                return (
+                  <div className="flex items-center justify-between  font-[600] border-b-[2px] pb-[20px] mt-[10px]">
+                    <div
+                      onClick={() => removeFromCart(item.id)}
+                      className="flex items-center justify-center gap-4 text-[20px] border-[1px] bg-slate-200 hover:bg-mainColor hover:cursor-pointer  w-[42px] h-[42px]"
+                    >
+                      X
+                    </div>
+                    <div>{item.price * cartItems[item.id]}</div>
+                    <div>
+                      <div className="flex items-center justify-center gap-4 text-[20px] border-[1px] bg-slate-200  w-[42px] h-[42px]">
+                        <p>{cartItems[item.id]}</p>
+                      </div>
+                    </div>
+                    <div>{item.price}</div>
+                    <div className="flex items-center gap-5">
+                      <div>
+                        <p>{item.name}</p>
+                      </div>
+                      <div className="w-[80px] h-[80px]">
+                        <img src={item.img} alt="" />
+                      </div>
+                    </div>
+                  </div>
+                );
+              }
+            })}
           </div>
+
           <div className="w-full flex items-center justify-between px-[20px] text-mainColor text-[25px] font-semibold">
             <button>مسح السلة</button>
             <button>واصل التسوق</button>
@@ -138,7 +67,7 @@ function Basket() {
         {/*=============== section ================*/}
 
         {/*=============== section ================*/}
-        <div className="w-[580px] h-[630px]  absolute top-[860px] left-[-100px] text-right pr-[20px] flex flex-col gap-5 rounded-lg shadow-[0_0_80px_0_gray]">
+        <div className="w-[580px] h-[630px]  absolute top-[760px] left-[-200px] text-right pr-[20px] flex flex-col gap-5 rounded-lg shadow-[0_0_80px_0_gray]">
           <div>
             <p className="text-[20px] font-bold my-[10px]">الكوبون</p>
             <p>ادخل رمز الكوبون الخاص بك اذا كان لديك واحد</p>

@@ -1,15 +1,17 @@
-import React from "react";
+import React, { useContext } from "react";
 import NavBar from "../components/NavBar";
 import Banner from "../components/Banner";
 import Card from "../components/Card";
 import Footer from "../components/Footer";
-import { useSelector, useDispatch } from "react-redux";
-import { decrease, increase } from "../store/counterSlice";
-import data from "../data";
+import { StoreContext } from "../Context/StoreContext";
+import { useParams } from "react-router-dom";
 
 function Product() {
-  const counterValue = useSelector((state) => state.counter.countValue);
-  const dispatch = useDispatch();
+  const { data, addToCart, cartItems, removeFromCart } =
+    useContext(StoreContext);
+  const { productId } = useParams();
+  const product = data.find((item) => item.id === Number(productId));
+
   return (
     <section className="relative">
       <Banner />
@@ -17,11 +19,9 @@ function Product() {
         <NavBar />
         {/*========== section  ==========*/}
         <div className="w-full h-[702px] mt-[500px] flex  justify-end">
-          <div className="text-right pr-[20px] font-semibold flex flex-col gap-5">
-            <h2 className="text-[40px] font-bold">فستان ازرق عصري</h2>
-            <p>
-              <span className="line-through">200 EGP</span> 1500 EGP
-            </p>
+          <div className="w-[50%] text-right pr-[20px] font-semibold flex flex-col gap-5">
+            <h2 className="text-[40px] font-bold">{product.name}</h2>
+            <p>$ {product.price}</p>
             <div className="text-[#FFC107] flex justify-end gap-4">
               <p className="text-black">(50)</p>
               <div>
@@ -58,21 +58,20 @@ function Product() {
             </div>
             <div>
               <div className="flex items-center justify-end gap-8">
-                <button className="w-[180px] h-[61px] rounded-[30px]  p-[16px] text-[16px] text-white bg-mainColor mb-[10px] font-bold flex items-center justify-center hover:bg-[#1877F2] transition-all duration-300">
+                <button
+                  onClick={() => {
+                    addToCart(product.id);
+                  }}
+                  className="w-[180px] h-[61px] rounded-[30px]  p-[16px] text-[16px] text-white bg-mainColor mb-[10px] font-bold flex items-center justify-center hover:bg-[#1877F2] transition-all duration-300"
+                >
                   اضف الي السلة
                 </button>
                 <div className="flex items-center justify-center gap-4 text-[20px] border-[1px] rounded-[20px]">
-                  <button
-                    onClick={() => dispatch(decrease(1))}
-                    className="w-[40px] h-[40px] text-[35px] border-[2px] rounded-bl-[20px] rounded-tl-[20px] flex items-center justify-center hover:bg-mainColor"
-                  >
+                  <button className="w-[40px] h-[40px] text-[35px] border-[2px] rounded-bl-[20px] rounded-tl-[20px] flex items-center justify-center hover:bg-mainColor">
                     -
                   </button>
-                  <p>{counterValue}</p>
-                  <button
-                    onClick={() => dispatch(increase(1))}
-                    className="w-[40px] h-[40px] text-[35px] border-[2px] rounded-tr-[20px]  rounded-br-[20px] flex items-center justify-center hover:bg-mainColor"
-                  >
+                  <p>{cartItems[product.id]}</p>
+                  <button className="w-[40px] h-[40px] text-[35px] border-[2px] rounded-tr-[20px]  rounded-br-[20px] flex items-center justify-center hover:bg-mainColor">
                     +
                   </button>
                 </div>
@@ -102,26 +101,26 @@ function Product() {
             </div>
           </div>
 
-          <div>
-            <img src="assets/single-1.png" alt="" />
+          <div className="h-full w-[48%]">
+            <img src={product.img} alt="" />
           </div>
         </div>
 
-        <div className="h-[135px] w-[715px] flex items-center justify-between ml-[637px]">
-          <div className="w-[134px] h-full">
-            <img src="assets/single-2.png" alt="" />
+        <div className="h-[135px] w-[615px] flex items-center justify-between ml-[737px]">
+          <div className="w-[114px] h-full">
+            <img src={product.img} alt="" />
           </div>
-          <div className="w-[134px] h-full">
-            <img src="assets/single-2.png" alt="" />
+          <div className="w-[114px] h-full">
+            <img src={product.img} alt="" />
           </div>
-          <div className="w-[134px] h-full">
-            <img src="assets/single-2.png" alt="" />
+          <div className="w-[114px] h-full">
+            <img src={product.img} alt="" />
           </div>
-          <div className="w-[134px] h-full">
-            <img src="assets/single-2.png" alt="" />
+          <div className="w-[114px] h-full">
+            <img src={product.img} alt="" />
           </div>
-          <div className="w-[134px] h-full">
-            <img src="assets/single-2.png" alt="" />
+          <div className="w-[114px] h-full">
+            <img src={product.img} alt="" />
           </div>
         </div>
         {/*========== section  ==========*/}

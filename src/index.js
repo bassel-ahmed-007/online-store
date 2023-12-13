@@ -3,14 +3,13 @@ import ReactDOM from "react-dom/client";
 import "./index.css";
 import App from "./App";
 import "remixicon/fonts/remixicon.css";
-import store from "./store/Store";
-import { Provider } from "react-redux";
+import StoreContextProvider from "./Context/StoreContext";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <React.StrictMode>
-    <Provider store={store}>
+    <StoreContextProvider>
       <App />
-    </Provider>
+    </StoreContextProvider>
   </React.StrictMode>
 );

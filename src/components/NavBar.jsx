@@ -1,16 +1,16 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import Cart from "../components/Cart";
 import Vistor from "./Vistor";
 import SearchBox from "../components/SearchBox";
 import { Link } from "react-router-dom";
-import { useSelector } from "react-redux";
+import { StoreContext } from "../Context/StoreContext";
 
 function NavBar() {
   const [showCart, setShowCart] = useState(false);
   const [showVistor, setShowVistor] = useState(false);
   const [showSearch, setShowSearch] = useState(false);
 
-  const counterValue = useSelector((state) => state.counter.countValue);
+  const { getTotalCartItems } = useContext(StoreContext);
 
   return (
     <header className="flex items-center justify-between relative">
@@ -18,8 +18,8 @@ function NavBar() {
       <div className="flex items-center justify-between gap-5 text-[25px] ">
         <div onClick={() => setShowCart(true)} className=" relative">
           <i class="ri-shopping-cart-line hover:cursor-pointer"></i>
-          <div className="w-[18px] h-[18px] font-bold text-black bg-mainColor rounded-full absolute top-[6px] left-[16px] content-['3'] text-[15px]  flex items-center justify-center border-[2px] hover:border-mainColor hover:cursor-pointer hover:scale-150 duration-300 hover:bg-[#1877F2] hover:text-white hover:font-bold">
-            {counterValue}
+          <div className="w-[28px] h-[28px] font-bold text-black bg-mainColor rounded-full absolute top-[2px] left-[16px] content-['3'] text-[22px]  flex items-center justify-center border-[2px] hover:border-mainColor hover:cursor-pointer hover:scale-150 duration-300 hover:bg-[#1877F2] hover:text-white hover:font-bold">
+            {getTotalCartItems()}
           </div>
         </div>
         <div>
